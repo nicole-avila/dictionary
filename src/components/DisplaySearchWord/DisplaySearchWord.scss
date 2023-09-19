@@ -1,0 +1,61 @@
+.display {
+  font-weight: 200;
+
+  &__container {
+    background: rgb(248, 223, 235);
+  }
+
+  & img {
+    width: 24px;
+    display: flex;
+    margin-left: auto;
+    padding: 0.5rem;
+  }
+  &__word {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  & h1,
+  p {
+    margin: 0;
+  }
+
+  &__phonetics-title {
+    letter-spacing: 2px;
+    font-weight: 300;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  &__phonetics-title:hover {
+    color: hotpink;
+  }
+  &__phonetics p {
+    margin: 0.5rem;
+  }
+
+  & hr {
+    width: 200px;
+    border: 1px solid hotpink;
+  }
+
+  &__meanings-container {
+    text-align: left;
+    padding-left: 0.5rem;
+  }
+
+  & .visible {
+    display: block;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .hidden {
+    display: none;
+  }
+}
