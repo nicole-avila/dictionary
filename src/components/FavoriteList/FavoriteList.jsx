@@ -10,8 +10,8 @@ export default function FavoriteList() {
   }
 
   return (
-    <div>
-      <h1>FavoriteList</h1>
+    <div className="favorites">
+      <h1>dina favoriter</h1>
       {favorites.map((favorite, index) => (
         <article key={index}>
           <p>{favorite.word}</p>

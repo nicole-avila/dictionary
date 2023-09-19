@@ -1,6 +1,6 @@
 import "./DisplaySearchWord.scss";
-import starFilled from "../../assets/star-filled.png";
-import starEmpty from "../../assets/star-empty.png";
+import heartFilled from "../../assets/heart-filled.svg";
+import heartEmpty from "../../assets/heart-empty.svg";
 import { FavoriteListContext } from "../FavoriteListContext/FavoriteListContext";
 import { useContext, useState } from "react";
 import { findByText } from "@testing-library/react";
@@ -32,9 +32,9 @@ export default function DisplaySearchWord({
   return (
     <div className="display">
       {searchWord.map((word, index) => (
-        <div className="display__container" key={index}>
+        <div key={index}>
           <img
-            src={favoriteStar ? starFilled : starEmpty}
+            src={favoriteStar ? heartFilled : heartEmpty}
             alt=""
             onClick={() => favoriteWord(word)} //sending word-object to favoriteWord function
           />
@@ -64,7 +64,7 @@ export default function DisplaySearchWord({
             <h3>EXEMPEL OF MEANINGS</h3>
             {word.meanings.map((meaning, index) => (
               <div className="display__meanings-container" key={index}>
-                <k>{meaning.partOfSpeech}</k>
+                <p>{meaning.partOfSpeech}</p>
                 <div>
                   <ol>
                     {meaning.definitions.map((def, index) => (

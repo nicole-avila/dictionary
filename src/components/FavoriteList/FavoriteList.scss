@@ -1,0 +1,11 @@
+.favorites {
+  width: 700px;
+  height: 600px;
+  background: white;
+  padding: 2rem;
+
+  & h1 {
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+}
