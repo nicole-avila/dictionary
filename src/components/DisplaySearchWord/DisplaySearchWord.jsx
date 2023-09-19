@@ -32,13 +32,13 @@ export default function DisplaySearchWord({
   return (
     <div className="display">
       {searchWord.map((word, index) => (
-        <div key={index}>
-          <img
-            src={favoriteStar ? heartFilled : heartEmpty}
-            alt=""
-            onClick={() => favoriteWord(word)} //sending word-object to favoriteWord function
-          />
+        <div className="display__container" key={index}>
           <div className="display__word">
+            <img
+              src={favoriteStar ? heartFilled : heartEmpty}
+              alt=""
+              onClick={() => favoriteWord(word)} //sending word-object to favoriteWord function
+            />
             <h1>{word.word}</h1>
             <p>{word.phonetic}</p>
           </div>
@@ -58,7 +58,7 @@ export default function DisplaySearchWord({
               </div>
             ))}
           </div>
-          <hr />
+          <hr className="display__line" />
 
           <div>
             <h3>EXEMPEL OF MEANINGS</h3>
@@ -85,6 +85,7 @@ export default function DisplaySearchWord({
               </div>
             ))}
           </div>
+          <hr className="display__end-line" />
         </div>
       ))}
     </div>

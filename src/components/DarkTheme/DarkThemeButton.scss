@@ -32,6 +32,7 @@
     visibility: hidden;
   }
 
+  //OBS! har missat något här, solen syns inte -- fortsätt imorgon
   & input:checked + label {
     background: #242424;
   }
@@ -59,7 +60,8 @@
     fill: #7e7e7e;
     transition: 0.3s;
   }
-  & input:checked + &__moon {
+  & input:checked,
+  &__moon {
     fill: #fff;
   }
 }

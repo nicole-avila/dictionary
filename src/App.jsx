@@ -16,7 +16,8 @@ function App() {
   function toggleFavoriteList() {
     setFavoriteListVisible((prevListVisible) => !prevListVisible);
   }
-
+  //TODO - audio elementen syns igenom toggle favoriteList när den är visible!
+  //TODO - fixa darkThemeButton, se kommentar i scss filen
   return (
     <DarkThemeProvider>
       <FavoriteListProvider>
