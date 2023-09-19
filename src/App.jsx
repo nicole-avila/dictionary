@@ -6,6 +6,7 @@ import favoriteHeart from "./assets/heart-w.svg";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 import DisplaySearchWord from "./components/DisplaySearchWord/DisplaySearchWord";
 import { FavoriteListProvider } from "./components/FavoriteListContext/FavoriteListContext";
+import { DarkThemeProvider } from "./components/DarkTheme/DarkThemeContext";
 
 function App() {
   const [searchWord, setSearchWord] = useState("");
@@ -17,35 +18,37 @@ function App() {
   }
 
   return (
-    <FavoriteListProvider>
-      <div className="app">
-        <Header />
-        <div className="app__top-container">
-          <SearchBar
-            searchWord={searchWord}
-            setSearchWord={setSearchWord}
-            setFavoriteStar={setFavoriteStar}
-          />
-          <img
-            className="app__heart"
-            src={favoriteHeart}
-            alt="icon in a shape of a heart"
-            onClick={toggleFavoriteList}
-          />
-          <div className="app__favorite-list">
-            {favoriteListVisible && <FavoriteList />}
+    <DarkThemeProvider>
+      <FavoriteListProvider>
+        <div className="app">
+          <Header />
+          <div className="app__top-container">
+            <SearchBar
+              searchWord={searchWord}
+              setSearchWord={setSearchWord}
+              setFavoriteStar={setFavoriteStar}
+            />
+            <img
+              className="app__heart"
+              src={favoriteHeart}
+              alt="icon in a shape of a heart"
+              onClick={toggleFavoriteList}
+            />
+            <div className="app__favorite-list">
+              {favoriteListVisible && <FavoriteList />}
+            </div>
           </div>
         </div>
-      </div>
 
-      {Array.isArray(searchWord) && searchWord.length > 0 && (
-        <DisplaySearchWord
-          searchWord={searchWord}
-          favoriteStar={favoriteStar}
-          setFavoriteStar={setFavoriteStar}
-        />
-      )}
-    </FavoriteListProvider>
+        {Array.isArray(searchWord) && searchWord.length > 0 && (
+          <DisplaySearchWord
+            searchWord={searchWord}
+            favoriteStar={favoriteStar}
+            setFavoriteStar={setFavoriteStar}
+          />
+        )}
+      </FavoriteListProvider>
+    </DarkThemeProvider>
   );
 }
 

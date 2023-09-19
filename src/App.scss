@@ -4,6 +4,16 @@
   max-width: 1280px;
 }
 
+.dark {
+  background: rgb(59, 57, 57);
+  color: white;
+}
+
+.light {
+  background: white;
+  color: black;
+}
+
 .app {
   position: relative;
   min-width: 350px;
