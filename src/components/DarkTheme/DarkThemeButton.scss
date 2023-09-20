@@ -1,5 +1,6 @@
 .theme-btn {
   & label {
+    // sätter form och färg på toggel container
     width: 70px;
     height: 29px;
     position: relative;
@@ -7,15 +8,16 @@
     background: #ebebeb;
     border-radius: 200px;
     box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
-      inset0px -5px 15px rgba(255, 255, 255, 0.4);
+      inset 0px -5px 15px rgba(255, 255, 255, 0.4);
     margin: 0 0 0 0.5rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s; //transition gör det möjligt för conatinern att skifta färgen på .03 sekunder
     // top: 0;
     // left: 10%;
   }
 
   & label:after {
+    //skapar den runda bollen i gult
     content: "";
     width: 25px;
     height: 25px;
@@ -27,41 +29,46 @@
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   }
   & input {
+    //Gör inputfältet hidden
     width: 0;
     height: 0;
     visibility: hidden;
   }
 
-  //OBS! har missat något här, solen syns inte -- fortsätt imorgon
   & input:checked + label {
+    //när man klickar på bollen, alltså checked så får den en mörk backgrund
     background: #242424;
   }
   & input:checked + label:after {
+    //Här flyttas bollen åt sidan, left för omvandlas till en mörk färg.. alltså den är gul när den är ocheckad och mörk när den är checkad.
     left: 68px;
     transform: translateX(-100%);
     background: linear-gradient(180deg, #777, #3a3a3a);
   }
   & label:active::after {
+    //denna dela gör så att bollen får med sig en "svans" den blir lite utdragen för effekten skull
     width: 33px;
   }
-  & label img {
+  & label svg {
     position: absolute;
-    width: 20px;
-    top: 4px;
+    width: 20px; // 120
+    top: -386px; // 40
     z-index: 100;
   }
-  &__sun {
+  & label svg.sun {
     left: 4px;
     fill: #fff;
     transition: 0.3s;
   }
-  &__moon {
-    left: 46px;
+  & label svg.moon {
+    left: 46px; //340
     fill: #7e7e7e;
     transition: 0.3s;
   }
-  & input:checked,
-  &__moon {
-    fill: #fff;
-  }
+  // & input:checked + label svg.sun {
+  //   fill: #fdfdfd;
+  // }
+  // & input:checked + label svg.moon {
+  //   fill: #fff;
+  // }
 }
