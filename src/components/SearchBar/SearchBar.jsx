@@ -1,6 +1,6 @@
 import "./SearchBar.scss";
 import { fetchFreeDictionary } from "../../fetch/fetchFreeDictionary";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function SearchBar({
   searchWord,
@@ -8,7 +8,6 @@ export default function SearchBar({
   setFavoriteStar,
 }) {
   const [message, setMessage] = useState("");
-  const searchRef = useRef(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,17 +24,12 @@ export default function SearchBar({
         setMessage("");
       }
       setSearchWord(data);
-      //   setMessage(data.message);
       setFavoriteStar(false);
     } catch (error) {
       console.error("Error", error);
     }
   }
   console.log(searchWord);
-
-  //   useEffect(() => {
-  //     searchRef.current.focus();
-  //   }, [searchWord]);
 
   return (
     <div className="search">

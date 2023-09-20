@@ -1,11 +1,89 @@
 .favorites {
   width: 700px;
-  height: 600px;
+  height: 800px;
+  overflow: scroll;
   background: white;
   padding: 2rem;
+  z-index: 100;
 
   & h1 {
     font-weight: 200;
     text-transform: uppercase;
+  }
+  &__word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  &__word-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 2rem;
+    justify-content: space-evenly;
+  }
+
+  &__btn {
+    width: 130px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 0.8em;
+    font-weight: 200;
+    text-transform: uppercase;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  &__btn:hover {
+    border-color: white;
+    background: #fe6fd6e8;
+  }
+  &__btn:focus,
+  &__btn:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  &__phonetics-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  &__phonetic-p {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__phonetics-line {
+    margin: 2rem auto;
+    width: 300px;
+    border: 1px solid hotpink;
+  }
+  & h3 {
+    font-weight: 200;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  & p,
+  li {
+    font-weight: 200;
+    text-align: left;
+  }
+  & .visible {
+    display: block;
+  }
+
+  & .hidden {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 399px) {
+  .favorites {
+    width: 300px;
   }
 }

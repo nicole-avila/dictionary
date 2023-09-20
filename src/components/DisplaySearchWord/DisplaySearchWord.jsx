@@ -15,7 +15,7 @@ export default function DisplaySearchWord({
   const { addFavorite } = useContext(FavoriteListContext);
 
   function favoriteWord(word) {
-    //handling the favorite word by uppdating the favoriteStar state and "adding" the word to favorites if the favoriteStar is true
+    //handling favorite word by uppdating the favoriteStar state and "adding" the word to favorites if the favoriteStar is true
     const favoriteWord = word;
     console.log(favoriteWord);
 

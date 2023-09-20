@@ -18,6 +18,7 @@ function App() {
   }
   //TODO - audio elementen syns igenom toggle favoriteList när den är visible!
   //TODO - fixa darkThemeButton, se kommentar i scss filen
+  //TODO - I favoritList gör bara ett ord visible vid klick och hidden på alla andra ord
   return (
     <DarkThemeProvider>
       <FavoriteListProvider>
