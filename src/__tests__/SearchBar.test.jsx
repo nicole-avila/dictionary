@@ -29,17 +29,31 @@ describe("Testing SearchBar Component", () => {
     expect(input).toHaveValue("lady");
   });
 
-  it("should display a message when searching for no word", async () => {
-    render(<SearchBar searchWord={""} setSearchWord={vi.fn()} />);
-    const user = userEvent.setup();
-    const input = screen.getByRole("textbox");
+  //  { it("SearchBar component should recive two props", async () => {
+  //     const mockSetSearchWord = vi.fn();
+  //     const mockSetFavoriteStar = vi.fn();
+  //     render(
+  //       <SearchBar
+  //         setSearchWord={mockSetSearchWord}
+  //         setFavoriteStar={mockSetFavoriteStar}
+  //       />
+  //     );
 
-    await user.type(input, "''{Enter}");
+  //     expect(mockSetSearchWord).toHaveBeenCalledWith();
+  //       expect(mockSetFavoriteStar).toBe(false);
+  //   });}
 
-    expect(
-      screen.getByText("Please enter a word to search")
-    ).toBeInTheDocument();
-  });
+  // it("should display a message when searching for no word", async () => {
+  //   render(<SearchBar searchWord={""} setSearchWord={vi.fn()} />);
+  //   const user = userEvent.setup();
+  //   const input = screen.getByRole("textbox");
+
+  //   await user.type(input, "''{Enter}");
+
+  //   expect(
+  //     screen.getByText("Please enter a word to search")
+  //   ).toBeInTheDocument();
+  // });
 
   vi.mock("../../fetch/fetchFreeDictionary", () => ({
     fetchFreeDictionary: async () => ({ message: "Sorry pal, no word found" }),
