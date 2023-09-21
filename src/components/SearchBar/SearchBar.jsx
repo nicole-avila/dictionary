@@ -1,35 +1,48 @@
 import "./SearchBar.scss";
 import { fetchFreeDictionary } from "../../fetch/fetchFreeDictionary";
 import { useState } from "react";
+import Loading from "../Loading/Loading";
 
-export default function SearchBar({
-  searchWord,
-  setSearchWord,
-  setFavoriteStar,
-}) {
+/*
+SearchBar use for searching for a word using
+ Free Dictionary API. It contains a form with input where the 
+ user can search for a word.
+*/
+
+export default function SearchBar({ setSearchWord, setFavoriteStar }) {
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
+  /*
+  In this function there is a message set for the user when the user has not enterd a search word.
+  And sets isLoading to true when the API calls begins and false when the API call is completed. There is also set a message for the user
+  from the API when a word is not founded. At last updates the value from search word and send it to setSearchWord function and rest the input filde and 
+   resets the favoriteStar when submittin the form. 
+  */
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!searchWord) {
+    if (!searchValue) {
       setMessage("Please enter a word to search");
       return;
     }
+    setIsLoading(true);
     try {
-      const data = await fetchFreeDictionary({ searchWord, setMessage });
+      const data = await fetchFreeDictionary({ searchValue, setMessage });
 
       if (data.message) {
         setMessage(data.message);
-      } else {
-        setMessage("");
       }
+
       setSearchWord(data);
+      setSearchValue("");
       setFavoriteStar(false);
     } catch (error) {
       console.error("Error", error);
+    } finally {
+      setIsLoading(false);
     }
   }
-  console.log(searchWord);
 
   return (
     <div className="search">
@@ -37,10 +50,12 @@ export default function SearchBar({
         <input
           className="search__input"
           type="text"
+          value={searchValue}
           placeholder="search your word.."
-          onChange={(e) => setSearchWord(e.target.value)}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
       </form>
+      {isLoading && <Loading />}
       {message && <p className="search__message">{message}</p>}
     </div>
   );

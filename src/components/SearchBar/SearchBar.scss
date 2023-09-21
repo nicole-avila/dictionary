@@ -32,7 +32,15 @@
 @media only screen and (min-width: 0px) and (max-width: 399px) {
   .search {
     &__input {
-      width: 240px;
+      width: 250px;
+    }
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 710px) {
+  .search {
+    &__input {
+      width: 350px;
     }
   }
 }
