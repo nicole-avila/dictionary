@@ -1,0 +1,128 @@
+[
+  {
+    "word": "lady",
+    "phonetic": "/ˈleɪdi/",
+    "phonetics": [
+      {
+        "text": "/ˈleɪdi/"
+      },
+      {
+        "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/lady-us.mp3"
+      }
+    ],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "An aristocratic title for a woman; the wife of a l… daughters and daughters-in-law of certain peers.",
+            "example": "Sir John Smith and Lady Smith.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "A high priestess.",
+            "synonyms": [],
+            "antonyms": []
+          }
+        ],
+        "synonyms": [],
+        "antonyms": []
+      },
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "The mistress of a household.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "A woman of breeding or higher class, a woman of authority.",
+            "example": "I would like the dining room to be fully set by tonight; would you do so? 'Yes, my lady'.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "The feminine of lord.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "A title for someone married to a lord or gentleman.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "A title that can be used instead of the formal terms of marchioness, countess, viscountess or baroness.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "(polite or used by children) A woman: an adult female human.",
+            "example": "Please direct this lady to the soft furnishings department.",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "(in the plural) A polite reference or form of address to women.",
+            "example": "Ladies and gentlemen, it is a pleasure to be here today. Follow me, ladies!",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "nr 8",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "example": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "example": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "example": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "example": "",
+            "synonyms": [],
+            "antonyms": []
+          },
+          {
+            "definition": "",
+            "synonyms": [],
+            "antonyms": []
+          }
+        ],
+        "synonyms": [],
+        "antonyms": []
+      }
+    ]
+  }
+]
