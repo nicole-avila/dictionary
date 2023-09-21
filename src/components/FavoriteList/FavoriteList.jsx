@@ -6,15 +6,12 @@ export default function FavoriteList() {
   const [favoriteInfoVisible, setFavoriteInfoVisible] = useState(false);
   const { favorites, removeFavorite } = useContext(FavoriteListContext);
 
-  console.log(favorites);
-
   function handleRemoveFavorite(word) {
     removeFavorite(word);
   }
 
   function handleInfoVisibility() {
     setFavoriteInfoVisible((prevInfoVisible) => !prevInfoVisible);
-    console.log("click");
   }
 
   return (
@@ -24,7 +21,7 @@ export default function FavoriteList() {
         <article>
           <div key={index} className="favorites__word-container">
             <div className="favorites__word" onClick={handleInfoVisibility}>
-              <p style={{ fontSize: "2rem" }}>{favorite.word} </p>
+              <p>{favorite.word} </p>
               <p>{favorite.phonetic}</p>
             </div>
             <div className="favorites__article">

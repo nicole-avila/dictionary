@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 const initialState = {
   darkMode: false,

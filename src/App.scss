@@ -15,28 +15,15 @@
 }
 
 .app {
-  position: relative;
-  min-width: 350px;
-
-  &__top-container {
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+  &__search {
     display: flex;
+    justify-content: center;
     align-items: center;
+    padding: 1rem;
   }
 
-  &__heart {
-    margin: 1rem;
-    width: 40px;
-  }
   &__favorite-list {
-    position: absolute;
-    top: 750%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding-top: 1rem;
   }
   &__title {
     font-weight: 200;

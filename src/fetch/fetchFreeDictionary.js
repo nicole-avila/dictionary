@@ -1,6 +1,6 @@
-export async function fetchFreeDictionary({ searchWord, setMessage }) {
+export async function fetchFreeDictionary({ searchValue, setMessage }) {
   try {
-    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`;
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);

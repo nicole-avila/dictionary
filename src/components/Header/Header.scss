@@ -1,9 +1,37 @@
 .header {
-  background-image: url("../../assets/books.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 200px;
-  //   opacity: 70%;
+  // background-image: url("../../assets/books.jpg");
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__title {
+    font-family: Poppins;
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin: 0;
+    color: white;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1px #000000;
+  }
+
+  &__heart-icon {
+    background: hotpink;
+    width: 50px;
+    margin: 1rem;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .header {
+    &__title {
+      font-size: 3rem;
+    }
+    &__heart-icon {
+      margin: 0 0.4rem;
+    }
+  }
 }
