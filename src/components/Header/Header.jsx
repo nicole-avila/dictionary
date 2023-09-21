@@ -1,5 +1,5 @@
 import "./Header.scss";
-import favoriteHeart from "../../assets/heart-w.svg";
+import favoriteHeart from "../../assets/heart.svg";
 import DarkThemeButton from "../DarkTheme/DarkThemeButton";
 
 export default function Header({ setFavoriteListVisible }) {
@@ -14,11 +14,14 @@ export default function Header({ setFavoriteListVisible }) {
       </div>
       <div className="header__container" onClick={toggleFavoriteList}>
         <h1 className="header__title">dictionary</h1>
-        <img
-          className="header__heart-icon"
-          src={favoriteHeart}
-          alt="icon in a shape of a heart"
-        />
+        <div>
+          <img
+            className="header__heart-icon"
+            src={favoriteHeart}
+            alt="icon in a shape of a heart"
+          />
+          <p className="header__heart-p">favorites</p>
+        </div>
       </div>
     </header>
   );
