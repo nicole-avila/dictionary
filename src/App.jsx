@@ -1,5 +1,7 @@
 import "./App.scss";
 import { useState } from "react";
+import { DarkThemeProvider } from "./components/DarkTheme/DarkThemeContext";
+import { FavoriteListProvider } from "./components/FavoriteListContext/FavoriteListContext";
 import Header from "./components/Header/Header";
 import SearchBar from "./components/SearchBar/SearchBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
@@ -16,30 +18,34 @@ function App() {
   const [favoriteListVisible, setFavoriteListVisible] = useState(false);
 
   return (
-    <div className="app">
-      <Header setFavoriteListVisible={setFavoriteListVisible} />
-      {favoriteListVisible ? (
-        <div className="app__favorite-list">
-          <FavoriteList />
-        </div>
-      ) : (
-        <div>
-          <div className="app__search">
-            <SearchBar
-              setSearchWord={setSearchWord}
-              setFavoriteStar={setFavoriteStar}
-            />
-          </div>
-          {Array.isArray(searchWord) && searchWord.length > 0 && (
-            <DisplaySearchWord
-              searchWord={searchWord}
-              favoriteStar={favoriteStar}
-              setFavoriteStar={setFavoriteStar}
-            />
+    <DarkThemeProvider>
+      <FavoriteListProvider>
+        <div className="app">
+          <Header setFavoriteListVisible={setFavoriteListVisible} />
+          {favoriteListVisible ? (
+            <div className="app__favorite-list">
+              <FavoriteList />
+            </div>
+          ) : (
+            <div>
+              <div className="app__search">
+                <SearchBar
+                  setSearchWord={setSearchWord}
+                  setFavoriteStar={setFavoriteStar}
+                />
+              </div>
+              {Array.isArray(searchWord) && searchWord.length > 0 && (
+                <DisplaySearchWord
+                  searchWord={searchWord}
+                  favoriteStar={favoriteStar}
+                  setFavoriteStar={setFavoriteStar}
+                />
+              )}
+            </div>
           )}
         </div>
-      )}
-    </div>
+      </FavoriteListProvider>
+    </DarkThemeProvider>
   );
 }
 
