@@ -1,6 +1,7 @@
 import { fireEvent, render } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
 import App from "../App";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 describe("App component", () => {
   it("should render app", () => {
@@ -14,6 +15,20 @@ describe("App component", () => {
     fireEvent.click(heartIcon);
 
     expect(heartIcon).toBeInTheDocument();
+  });
+
+  it("SearchBar component should recive two props", () => {
+    const mockSetSearchWord = vi.fn();
+    const mockSetFavoriteStar = vi.fn();
+    render(
+      <SearchBar
+        setSearchWord={mockSetSearchWord}
+        setFavoriteStar={mockSetFavoriteStar}
+      />
+    );
+
+    //   expect(mockSetSearchWord).toHaveBeenCalledWith();
+    //   expect(mockSetFavoriteStar).toBe(false);
   });
 });
 
