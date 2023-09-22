@@ -1,20 +1,7 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
 import { it, expect } from "vitest";
 import App from "../App";
-import SearchBar from "../components/SearchBar/SearchBar";
 import userEvent from "@testing-library/user-event";
-import { rest } from "msw";
-import { setupServer } from "msw/node";
-
-const server = setupServer(
-  rest.get(
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
-    (_req, res, ctx) => res(ctx.json({ word: mockWords }))
-  )
-);
-
-beforeAll(() => server.listen());
-afterAll(() => server.close());
 
 it("should render app", () => {
   render(<App />);
@@ -27,17 +14,6 @@ it("should toggle favoriteList when heart-icon is clicked", () => {
   user.click(heartIcon);
 
   expect(heartIcon).toBeInTheDocument();
-});
-
-it("SearchBar component should recive two props", () => {
-  const mockSetSearchWord = vi.fn();
-  const mockSetFavoriteStar = vi.fn();
-  render(
-    <SearchBar
-      setSearchWord={mockSetSearchWord}
-      setFavoriteStar={mockSetFavoriteStar}
-    />
-  );
 });
 
 it("should display correct word after submisson via click", async () => {
@@ -75,6 +51,18 @@ it("should display a message when the word dose not exsist", async () => {
   const message = container.querySelector(".search");
 
   expect(message.textContent).toBe("Please enter a word to search");
+});
+
+it("should display a message when searching for word that dose not excist in the dictionary", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
+
+  await user.type(input, "'laady'{Enter}");
+  const setMessage = await screen.findByText(
+    "Sorry pal, we couldn't find definitions for the word you were looking for."
+  );
+  expect(setMessage).toBeInTheDocument();
 });
 
 it("should search for a word, like it, and see the favorite word in the favorites List", async () => {
@@ -142,3 +130,79 @@ it("should be able to hear audio", async () => {
     expect(audioElement).toBeTruthy();
   });
 });
+
+////////////////////////////////
+
+// it("DisplaySearch component should recive three props", () => {
+//   const mockSearchWord = "lady";
+//   const mockSetSearchWord = vi.fn();
+//   const mockSetFavoriteStar = vi.fn();
+//   render(
+//     <DisplaySearchWord
+//       SearchWord={mockSearchWord}
+//       setSearchWord={mockSetSearchWord}
+//       setFavoriteStar={mockSetFavoriteStar}
+//     />
+//   );
+
+/////////////////////////////////
+
+// it("should display a word after submission via enter", async () => {
+//   render(<SearchBar />);
+//   const user = userEvent.setup();
+
+//   const inputSearch = screen.getByRole("textbox");
+//   await user.type(inputSearch, "cat");
+//   const searchResult = screen.getByText("cat");
+//   await user.click(searchResult);
+
+//   const searchWord = screen.getByRole("searchWord");
+//   expect(within(searchWord).getByText("cat")).toBeInTheDocument();
+// });
+
+// Here are the accessible roles:
+
+//   banner:
+
+//   Name "":
+//   <header
+//     class="header"
+//   />
+
+//   --------------------------------------------------
+//   checkbox:
+
+//   Name "":
+//   <input
+//     id="darkmode-toggle"
+//     type="checkbox"
+//   />
+
+//   --------------------------------------------------
+//   heading:
+
+//   Name "dictionary":
+//   <h1
+//     class="header__title"
+//   />
+
+//   --------------------------------------------------
+//   img:
+
+//   Name "icon in a shape of a heart":
+//   <img
+//     alt="icon in a shape of a heart"
+//     class="header__heart-icon"
+//     src="/src/assets/heart.svg"
+//   />
+
+//   --------------------------------------------------
+//   textbox:
+
+//   Name "":
+//   <input
+//     class="search__input"
+//     placeholder="search your word.."
+//     type="text"
+//     value="lady "
+//   />
