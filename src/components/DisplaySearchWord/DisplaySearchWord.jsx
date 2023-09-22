@@ -1,7 +1,7 @@
 import "./DisplaySearchWord.scss";
 import heartFilled from "../../assets/heart-filled.svg";
 import heartEmpty from "../../assets/heart-empty.svg";
-import { FavoriteListContext } from "../FavoriteListContext/FavoriteListContext";
+import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvider";
 import { useContext } from "react";
 import Word from "./Word";
 
@@ -30,7 +30,7 @@ export default function DisplaySearchWord({
           <div className="display__word">
             <img
               src={favoriteStar ? heartFilled : heartEmpty}
-              alt=""
+              alt="heart shape icon"
               onClick={() => handleFavoriteWord(word)} //sending word-object to favoriteWord function
             />
             <h1>{word.word}</h1>

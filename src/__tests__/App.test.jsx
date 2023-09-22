@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { it, expect } from "vitest";
 import App from "../App";
 import SearchBar from "../components/SearchBar/SearchBar";
@@ -22,9 +22,9 @@ it("should render app", () => {
 
 it("should toggle favoriteList when heart-icon is clicked", () => {
   const { getByAltText } = render(<App />);
-
+  const user = userEvent.setup();
   const heartIcon = getByAltText("icon in a shape of a heart");
-  fireEvent.click(heartIcon);
+  user.click(heartIcon);
 
   expect(heartIcon).toBeInTheDocument();
 });
@@ -40,15 +40,6 @@ it("SearchBar component should recive two props", () => {
   );
 });
 
-it("Should ", () => {
-  const { getByAltText } = render(<App />);
-
-  const heartIcon = getByAltText("icon in a shape of a heart");
-  fireEvent.click(heartIcon);
-
-  expect(heartIcon).toBeInTheDocument();
-});
-
 it("should display correct word after submisson via click", async () => {
   render(<App />);
 
@@ -60,7 +51,7 @@ it("should display correct word after submisson via click", async () => {
   expect(searchWord).toBeInTheDocument();
 });
 
-it("should changes from light to dark mode", () => {
+it("should changes from light to dark mode", async () => {
   render(<App />);
   const user = userEvent.setup();
   const darkTheme = screen.getByRole("checkbox");
@@ -69,92 +60,85 @@ it("should changes from light to dark mode", () => {
   expect(darkTheme).toBeInTheDocument();
   // expect(appBackground).toHaveStyle("background-color: rgb(255,255,255)");
 
-  user.click(darkTheme);
+  await user.click(darkTheme);
   expect(appBackground).toHaveStyle("background-color: rgba(0,0,0,0)");
 });
 
-// user.click("checkbox", "darkmode-toggle");
-// expect(appBackground).toHaveStyle("background: rgb(59, 57, 57)");
+it("should display a message when the word dose not exsist", async () => {
+  const { container } = render(<App />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
 
-// expect(darkTheme).toBeInTheDocument();
+  await user.type(input, "{Enter}"); //simulerar ett sökord
+  expect(screen.findByText("Loading.."));
 
-///////////////////////////////////
+  const message = container.querySelector(".search");
 
-//   expect(mockSetSearchWord).toHaveBeenCalledWith();
-//   expect(mockSetFavoriteStar).toBe(false);
+  expect(message.textContent).toBe("Please enter a word to search");
+});
 
-////////////////////////////////
+it("should search for a word, like it, and see the favorite word in the favorites List", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
+  await user.type(input, "lady {Enter}");
 
-// it("DisplaySearch component should recive three props", () => {
-//   const mockSearchWord = "lady";
-//   const mockSetSearchWord = vi.fn();
-//   const mockSetFavoriteStar = vi.fn();
-//   render(
-//     <DisplaySearchWord
-//       SearchWord={mockSearchWord}
-//       setSearchWord={mockSetSearchWord}
-//       setFavoriteStar={mockSetFavoriteStar}
-//     />
-//   );
+  const imgTag = await screen.findByAltText("heart shape icon");
+  user.click(imgTag);
 
-/////////////////////////////////
+  const favoriteList = await screen.findByAltText("icon in a shape of a heart");
+  expect(favoriteList).toBeInTheDocument();
+  user.click(favoriteList);
 
-// it("should display a word after submission via enter", async () => {
-//   render(<SearchBar />);
-//   const user = userEvent.setup();
+  const favoriteWord = screen.getByText("lady");
+  expect(favoriteWord).toBeInTheDocument();
+});
 
-//   const inputSearch = screen.getByRole("textbox");
-//   await user.type(inputSearch, "cat");
-//   const searchResult = screen.getByText("cat");
-//   await user.click(searchResult);
+it("should remove a favorite word from the favorite list", async () => {
+  const { container } = render(<App />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
+  await user.type(input, "lady {Enter}");
 
-//   const searchWord = screen.getByRole("searchWord");
-//   expect(within(searchWord).getByText("cat")).toBeInTheDocument();
-// });
+  const imgTag = await screen.findByAltText("heart shape icon");
+  user.click(imgTag);
 
-// Here are the accessible roles:
+  const favoriteList = await screen.findByAltText("icon in a shape of a heart");
+  expect(favoriteList).toBeInTheDocument();
+  await user.click(favoriteList);
 
-//   banner:
+  const favoriteWord = screen.getByText("lady");
+  expect(favoriteWord).toBeInTheDocument();
 
-//   Name "":
-//   <header
-//     class="header"
-//   />
+  const removeBtn = await screen.findByText(/remove word/i);
+  expect(removeBtn).toBeInTheDocument();
+  await user.click(removeBtn);
 
-//   --------------------------------------------------
-//   checkbox:
+  await waitFor(() => {
+    expect(favoriteWord).not.toBeInTheDocument();
+  });
 
-//   Name "":
-//   <input
-//     id="darkmode-toggle"
-//     type="checkbox"
-//   />
+  // user.click(removeBtn);
+});
 
-//   --------------------------------------------------
-//   heading:
+it("should be able to hear audio", async () => {
+  const { container } = render(<App />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
+  await user.type(input, "lady {Enter}");
 
-//   Name "dictionary":
-//   <h1
-//     class="header__title"
-//   />
+  const phoneticToggel = container.querySelector(".display__phonetics-title");
+  user.click(phoneticToggel);
 
-//   --------------------------------------------------
-//   img:
+  const audioElement = await screen.findByTestId("audio");
+  expect(audioElement).toBeInTheDocument();
 
-//   Name "icon in a shape of a heart":
-//   <img
-//     alt="icon in a shape of a heart"
-//     class="header__heart-icon"
-//     src="/src/assets/heart.svg"
-//   />
+  const audioSource = audioElement.querySelector("source");
+  expect(audioSource).toBeInTheDocument();
 
-//   --------------------------------------------------
-//   textbox:
+  audioElement.play();
 
-//   Name "":
-//   <input
-//     class="search__input"
-//     placeholder="search your word.."
-//     type="text"
-//     value="lady "
-//   />
+  await waitFor(() => {
+    expect(audioElement).toBeTruthy();
+  });
+});

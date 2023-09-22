@@ -1,5 +1,5 @@
 import "./FavoriteList.scss";
-import { FavoriteListContext } from "../FavoriteListContext/FavoriteListContext";
+import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvider";
 import { useContext, useState } from "react";
 
 export default function FavoriteList() {
@@ -16,12 +16,12 @@ export default function FavoriteList() {
 
   return (
     <div className="favorites">
-      <h1>dina favoriter</h1>
+      <h1 className="favorites__title">dina favoriter</h1>
       {favorites.map((favorite, index) => (
-        <article>
-          <div key={index} className="favorites__word-container">
+        <article key={index}>
+          <div className="favorites__word-container">
             <div className="favorites__word" onClick={handleInfoVisibility}>
-              <p>{favorite.word} </p>
+              <p className="favorites_favorite">{favorite.word} </p>
               <p>{favorite.phonetic}</p>
             </div>
             <div className="favorites__article">

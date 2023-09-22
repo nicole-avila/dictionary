@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
 import userEvent from "@testing-library/user-event";
 import SearchBar from "../components/SearchBar/SearchBar";
@@ -58,17 +58,21 @@ describe("Testing SearchBar Component", () => {
   vi.mock("../../fetch/fetchFreeDictionary", () => ({
     fetchFreeDictionary: async () => ({ message: "Sorry pal, no word found" }),
   }));
+  //Lägg in message i din json fil!
 
-  it("should display a message when the word do not exsist", async () => {
-    render(<SearchBar searchWord={""} setSearchWord={vi.fn()} />);
+  it("should display a message when the word dose not exsist", async () => {
+    const { container } = render(
+      <SearchBar searchWord={""} setSearchWord={vi.fn()} />
+    );
     const user = userEvent.setup();
     const input = screen.getByRole("textbox");
 
-    await user.type(input, "'laaddyy' {Enter}"); //simulerar ett sökord
+    await user.type(input, "{Enter}"); //simulerar ett sökord
     expect(screen.findByText("Loading.."));
 
-    // await waitFor(() => {
-    //   expect(screen.findByText("Sorry pal, no word found")).toBeInTheDocument();
+    const message = container.querySelector(".search");
+
+    expect(message.textContent).toBe("Please enter a word to search");
   });
   // expect(screen.findByText("Sorry pal, no word found")).toBeInTheDocument();
   // const setMessage = await screen.findByText("Sorry pal, no word found");

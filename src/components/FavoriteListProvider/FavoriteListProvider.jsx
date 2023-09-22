@@ -31,15 +31,13 @@ export function FavoriteListProvider({ children }) {
   function handleRemoveFavorite(word) {
     dispatch({ type: "REMOVE_FAVORITE", payload: word });
   }
-
+  const value = {
+    favorites: state.favorites,
+    addFavorite: handleAddFavorite,
+    removeFavorite: handleRemoveFavorite,
+  };
   return (
-    <FavoriteListContext.Provider
-      value={{
-        favorites: state.favorites,
-        addFavorite: handleAddFavorite,
-        removeFavorite: handleRemoveFavorite,
-      }}
-    >
+    <FavoriteListContext.Provider value={value}>
       {children}
     </FavoriteListContext.Provider>
   );
