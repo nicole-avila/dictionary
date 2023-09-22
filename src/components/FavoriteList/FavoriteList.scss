@@ -1,7 +1,7 @@
 .favorites {
   width: 700px;
-  height: 800px;
-  overflow: scroll;
+  // height: 800px;
+  // overflow: scroll;
   margin: auto;
   padding: 2rem;
   z-index: 100;
@@ -48,7 +48,7 @@
   &__phonetics-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     gap: 1rem;
   }
   &__phonetic-p {

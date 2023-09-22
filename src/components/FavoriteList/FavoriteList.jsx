@@ -3,6 +3,7 @@ import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvide
 import { useContext, useState } from "react";
 
 export default function FavoriteList() {
+  const [selectedWord, setSelectedWord] = useState("");
   const [favoriteInfoVisible, setFavoriteInfoVisible] = useState(false);
   const { favorites, removeFavorite } = useContext(FavoriteListContext);
 
@@ -10,7 +11,8 @@ export default function FavoriteList() {
     removeFavorite(word);
   }
 
-  function handleInfoVisibility() {
+  function handleInfoVisibility(word) {
+    setSelectedWord(word);
     setFavoriteInfoVisible((prevInfoVisible) => !prevInfoVisible);
   }
 
@@ -20,7 +22,10 @@ export default function FavoriteList() {
       {favorites.map((favorite, index) => (
         <article key={index}>
           <div className="favorites__word-container">
-            <div className="favorites__word" onClick={handleInfoVisibility}>
+            <div
+              className="favorites__word"
+              onClick={() => handleInfoVisibility(favorite.word)}
+            >
               <p className="favorites_favorite">{favorite.word} </p>
               <p>{favorite.phonetic}</p>
             </div>
@@ -36,7 +41,9 @@ export default function FavoriteList() {
 
           <div
             className={`favorites__container ${
-              favoriteInfoVisible ? "visible" : "hidden"
+              favoriteInfoVisible && favorite.word === selectedWord
+                ? "visible"
+                : "hidden"
             }`}
           >
             <h3>PHONETICS SPELLING</h3>
