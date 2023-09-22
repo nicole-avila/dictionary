@@ -62,13 +62,21 @@ it("should display correct word after submisson via click", async () => {
 
 it("should changes from light to dark mode", () => {
   render(<App />);
-  const darkTheme = screen.getByRole("checkbox", "darkmode-toggle");
-
-  const appBackground = screen.getByRole("dark-mode");
-  // expect(appBackground).toHaveStyle("background: background: rgb(59, 57, 57)");
+  const user = userEvent.setup();
+  const darkTheme = screen.getByRole("checkbox");
+  const appBackground = screen.getByRole("banner");
 
   expect(darkTheme).toBeInTheDocument();
+  // expect(appBackground).toHaveStyle("background-color: rgb(255,255,255)");
+
+  user.click(darkTheme);
+  expect(appBackground).toHaveStyle("background-color: rgba(0,0,0,0)");
 });
+
+// user.click("checkbox", "darkmode-toggle");
+// expect(appBackground).toHaveStyle("background: rgb(59, 57, 57)");
+
+// expect(darkTheme).toBeInTheDocument();
 
 ///////////////////////////////////
 
