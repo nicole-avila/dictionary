@@ -49,19 +49,22 @@
     //denna dela gör så att bollen får med sig en "svans" den blir lite utdragen för effekten skull
     width: 33px;
   }
-  & label svg {
+  & label img {
     position: absolute;
     width: 20px; // 120
-    top: -386px; // 40
+    top: 4.5px; // 40
     z-index: 100;
   }
-  & label svg.sun {
+  & .moon {
+    width: 17px;
+  }
+  & label .sun {
     left: 4px;
     fill: #fff;
     transition: 0.3s;
   }
-  & label svg.moon {
-    left: 46px; //340
+  & label .moon {
+    left: 48px; //340
     fill: #7e7e7e;
     transition: 0.3s;
   }

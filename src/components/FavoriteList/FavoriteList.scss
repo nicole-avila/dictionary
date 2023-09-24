@@ -85,5 +85,11 @@
 @media only screen and (min-width: 0px) and (max-width: 399px) {
   .favorites {
     width: 300px;
+    display: contents;
+
+    &__phonetics-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }
