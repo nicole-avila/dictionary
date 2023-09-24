@@ -14,7 +14,6 @@ import DisplaySearchWord from "./components/DisplaySearchWord/DisplaySearchWord"
 
 function App() {
   const [searchWord, setSearchWord] = useState("");
-  const [favoriteStar, setFavoriteStar] = useState(false);
   const [favoriteListVisible, setFavoriteListVisible] = useState(false);
 
   return (
@@ -29,16 +28,12 @@ function App() {
           ) : (
             <div>
               <div className="app__search">
-                <SearchBar
-                  setSearchWord={setSearchWord}
-                  setFavoriteStar={setFavoriteStar}
-                />
+                <SearchBar setSearchWord={setSearchWord} />
               </div>
               {Array.isArray(searchWord) && searchWord.length > 0 && (
                 <DisplaySearchWord
                   searchWord={searchWord}
-                  favoriteStar={favoriteStar}
-                  setFavoriteStar={setFavoriteStar}
+                  setSearchWord={setSearchWord}
                 />
               )}
             </div>

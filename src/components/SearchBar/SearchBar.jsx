@@ -9,7 +9,7 @@ SearchBar use for searching for a word using
  user can search for a word.
 */
 
-export default function SearchBar({ setSearchWord, setFavoriteStar }) {
+export default function SearchBar({ setSearchWord }) {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -36,7 +36,6 @@ export default function SearchBar({ setSearchWord, setFavoriteStar }) {
 
       setSearchWord(data);
       setSearchValue("");
-      setFavoriteStar(false);
     } catch (error) {
       console.error("Error", error);
     } finally {

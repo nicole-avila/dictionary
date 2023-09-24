@@ -34,6 +34,9 @@
   &__phonetics p {
     margin: 0.5rem;
   }
+  &__phonetic-audio {
+    width: 150px;
+  }
   &__phonetics {
     display: flex;
     flex-wrap: wrap;

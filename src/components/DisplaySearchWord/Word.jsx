@@ -17,10 +17,14 @@ export default function Word({ word }) {
       >
         {word.phonetics.map((phonetic, index) => (
           <div className="display__phonetics-container" key={index}>
-            <p>{phonetic.text}</p>
-            <audio data-testid="audio" controls style={{ width: "150px" }}>
-              <source src={phonetic.audio} type="audio/mpeg" />
-            </audio>
+            <p className="display__phonetic-p">{phonetic.text}</p>
+            <audio
+              controls
+              className="display__phonetic-audio"
+              data-testid="audio"
+              src={phonetic.audio}
+              type="audio/mpeg"
+            ></audio>
           </div>
         ))}
       </div>
