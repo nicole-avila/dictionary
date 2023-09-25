@@ -2,6 +2,7 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import { it, expect } from "vitest";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
+import { DarkThemeProvider } from "../components/DarkTheme/DarkThemeContext";
 
 describe("Integration Testing on App ", () => {
   it("should render app", () => {
@@ -13,6 +14,7 @@ describe("Integration Testing on App ", () => {
     const user = userEvent.setup();
     const input = screen.getByRole("textbox");
     await user.type(input, "lady {Enter}");
+    expect(input).toBeInTheDocument();
 
     const imgTag = await screen.findByAltText("gray heart shape icon");
     user.click(imgTag);
@@ -48,16 +50,19 @@ describe("Integration Testing on App ", () => {
   });
 
   it("should changes from light to dark mode", async () => {
-    render(<App />);
+    render(
+      <DarkThemeProvider>
+        <App />
+      </DarkThemeProvider>
+    );
     const user = userEvent.setup();
     const darkTheme = screen.getByRole("checkbox");
-    const appBackground = screen.getByRole("banner");
 
-    expect(darkTheme).toBeInTheDocument();
-    // expect(appBackground).toHaveStyle("background-color: rgb(255,255,255)");
-
+    const bodyElement = document.body;
+    expect(bodyElement).toHaveClass("light");
     await user.click(darkTheme);
-    expect(appBackground).toHaveStyle("background-color: rgba(0,0,0,0)");
+
+    expect(bodyElement).toHaveClass("dark");
   });
 
   it("should display a message when the word dose not exsist", async () => {
@@ -91,12 +96,17 @@ describe("Integration Testing on App ", () => {
     const input = screen.getByRole("textbox");
     await user.type(input, "lady {Enter}");
 
-    const phoneticToggel = container.querySelector(".display__phonetics-title");
-    user.click(phoneticToggel);
+    expect(input).toBeInTheDocument();
+    const Loading = await screen.findByText("Loading..");
 
-    const audioElement = await screen.findByTestId("audio");
+    const phoneticToggel = await screen.findByText(
+      "click here for phonetics spelling"
+    );
+    expect(Loading).not.toBeInTheDocument();
+    await user.click(phoneticToggel);
+
+    const audioElement = screen.getByTestId("audio");
     expect(audioElement).toBeInTheDocument();
-
     audioElement.play();
 
     await waitFor(() => {

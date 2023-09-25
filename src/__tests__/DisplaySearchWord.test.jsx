@@ -43,12 +43,11 @@ describe("Testing DisplaySearchWord Component", () => {
         <DisplaySearchWord searchWord={mockWords} />
       </FavoriteListProvider>
     );
-
     const user = userEvent.setup();
     expect(screen.getByText("lady")).toBeInTheDocument();
     expect(screen.getByRole("img", "heart shape icon")).toBeInTheDocument();
     expect(screen.getAllByText("/ˈleɪdi/")).toHaveLength(2);
-    expect(screen.getAllByTestId("audio")).toHaveLength(2); // kolla console.loggen word -- visar 2
+    expect(screen.getByTestId("audio")).toBeInTheDocument();
 
     expect(screen.getByText("EXEMPEL OF MEANINGS")).toBeInTheDocument();
     expect(screen.getAllByText("noun")).toHaveLength(2);
