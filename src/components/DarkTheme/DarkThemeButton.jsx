@@ -13,8 +13,8 @@ export default function DarkThemeButton() {
 
   return (
     <div className="theme-btn">
-      <input type="checkbox" id="darkmode-toggle" />
-      <label onClick={ToggleThemeButon} htmlFor="darkmode-toggle">
+      <input onClick={ToggleThemeButon} type="checkbox" id="darkmode-toggle" />
+      <label htmlFor="darkmode-toggle">
         <img className="sun" src={sun} alt="sun" />
         <img className="moon" src={moon} alt="moon" />
       </label>

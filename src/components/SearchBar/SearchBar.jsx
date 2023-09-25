@@ -29,7 +29,7 @@ export default function SearchBar({ setSearchWord }) {
     setIsLoading(true);
     try {
       const data = await fetchFreeDictionary({ searchValue, setMessage });
-
+      console.log(data);
       if (data.message) {
         setMessage(data.message);
       }

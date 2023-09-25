@@ -47,6 +47,30 @@ export default function Word({ word }) {
                     ) : (
                       ""
                     )}
+                    {def.synonyms && def.synonyms.length > 0 && (
+                      <div>
+                        <strong>Synonyms</strong>
+                        <ul>
+                          {def.synonyms.map((synonym, index) => (
+                            <li key={index} style={{ color: "green" }}>
+                              {synonym}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}{" "}
+                    {def.antonyms && def.antonyms.length > 0 && (
+                      <div>
+                        <strong>Antonyms</strong>
+                        <ul>
+                          {def.antonyms.map((antonym, index) => (
+                            <li key={index} style={{ color: "blue" }}>
+                              {antonym}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ol>
