@@ -15,9 +15,7 @@ Free Dictionary API.
   sparade svaret från API. Man ska även kunna ta bort sina favoritord.
 - Byta mellan dark och light theme.
 
-### Testning
-
-    - RTL, Jest & MSW
+### Testning - RTL, Jest & MSW
 
 - Appen innehåller enhetstester och integrationstester som säkerställer
   att koden huvudsakligen fungerar som den ska.
