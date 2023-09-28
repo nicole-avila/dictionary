@@ -7,11 +7,6 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import FavoriteList from "./components/FavoriteList/FavoriteList";
 import DisplaySearchWord from "./components/DisplaySearchWord/DisplaySearchWord";
 
-//TODO - Lägg en state på dina FavoritList 'din favorit' och 'dina fivoriter' och ' du har inga favoriter' beroende på antal ord användare gillar
-//TODO - Man ska bara kunna likea ett ord och inte alla!
-//TODO - fixa darkThemeButton, toggel är inte komplett - se kommentar i scss filen
-//TODO - I favoritList att bara visa innehåll för ett ord och inte alla.. useState . SelectedWord
-
 function App() {
   const [searchWord, setSearchWord] = useState("");
   const [favoriteListVisible, setFavoriteListVisible] = useState(false);

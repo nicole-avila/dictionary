@@ -4,7 +4,7 @@ import { useState } from "react";
 import Loading from "../Loading/Loading";
 
 /*
-SearchBar use for searching for a word using
+SearchBar Component use for searching for a word using
  Free Dictionary API. It contains a form with input where the 
  user can search for a word.
 */
@@ -16,9 +16,9 @@ export default function SearchBar({ setSearchWord }) {
 
   /*
   In this function there is a message set for the user when the user has not enterd a search word.
-  And sets isLoading to true when the API calls begins and false when the API call is completed. There is also set a message for the user
-  from the API when a word is not founded. At last updates the value from search word and send it to setSearchWord function and rest the input filde and 
-   resets the favoriteStar when submittin the form. 
+  And sets isLoading to true when the API calls begins and false when the API call is completed. There is also a message for the user
+  from the API when a word is not founded. At last the value from search word is updated, send it to setSearchWord-function and reset 
+  the input filde when submittin the form. 
   */
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +29,6 @@ export default function SearchBar({ setSearchWord }) {
     setIsLoading(true);
     try {
       const data = await fetchFreeDictionary({ searchValue, setMessage });
-      console.log(data);
       if (data.message) {
         setMessage(data.message);
       }

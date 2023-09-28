@@ -1,8 +1,8 @@
 import "./DarkThemeButton.scss";
+import { DarkModeContext } from "../DarkTheme/DarkThemeContext";
+import { useContext } from "react";
 import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
-import { useContext } from "react";
-import { DarkModeContext } from "../DarkTheme/DarkThemeContext";
 
 export default function DarkThemeButton() {
   const { handleDarkMode } = useContext(DarkModeContext);
@@ -21,15 +21,3 @@ export default function DarkThemeButton() {
     </div>
   );
 }
-
-{
-  /* <button onClick={ToggleThemeButon}>
-        {darkMode ? "Light" : "Dark"}
-      </button> */
-}
-
-// {darkMode ? (
-//   <img className="theme-btn__sun" src={sun} alt="" />
-// ) : (
-//   <img className="theme-btn__moon" src={moon} alt="" />
-// )}

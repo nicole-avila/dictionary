@@ -12,6 +12,12 @@ function darkModeReducer(state, action) {
       return state;
   }
 }
+
+/* 
+DarkThemeProvider Component manages the application's dark mode state using a reducer.
+It lets you switch between dark and light modes and updates the body class of 
+the document to match the selected mode.
+*/
 export const DarkModeContext = createContext();
 
 export function DarkThemeProvider({ children }) {
