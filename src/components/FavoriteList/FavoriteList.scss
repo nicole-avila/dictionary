@@ -1,15 +1,18 @@
 .favorites {
   width: 700px;
-  // height: 800px;
-  // overflow: scroll;
   margin: auto;
 
   z-index: 100;
 
-  & h1 {
+  &__title {
+    letter-spacing: 2px;
     font-weight: 200;
     text-transform: uppercase;
   }
+  &__title b {
+    color: #fe6fd6e8;
+  }
+
   &__word {
     display: flex;
     justify-content: center;
@@ -39,10 +42,6 @@
   &__btn:hover {
     border-color: white;
     background: #fe6fd6e8;
-  }
-  &__btn:focus,
-  &__btn:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
   }
 
   &__phonetics-container {

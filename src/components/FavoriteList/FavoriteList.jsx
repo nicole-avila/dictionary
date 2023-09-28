@@ -25,7 +25,20 @@ export default function FavoriteList() {
 
   return (
     <div className="favorites">
-      <h1 className="favorites__title">dina favoriter</h1>
+      {favorites.length === 0 ? (
+        <h1 className="favorites__title">
+          lägg till ett{" "}
+          <span>
+            {" "}
+            <b>favorit</b>
+          </span>
+          ord
+        </h1>
+      ) : (
+        <h1 className="favorites__title">
+          {favorites.length > 1 ? "dina favoriter" : "din favorit"}
+        </h1>
+      )}
       {favorites.map((favorite, index) => (
         <article key={index}>
           <div className="favorites__word-container">
