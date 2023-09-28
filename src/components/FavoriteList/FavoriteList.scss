@@ -96,6 +96,11 @@
     width: 300px;
     display: contents;
 
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
     &__phonetics-container {
       display: flex;
       flex-wrap: wrap;
