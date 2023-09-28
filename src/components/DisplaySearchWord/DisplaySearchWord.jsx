@@ -1,27 +1,29 @@
 import "./DisplaySearchWord.scss";
+import { useContext } from "react";
+import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvider";
 import heartFilled from "../../assets/heart-filled.svg";
 import heartEmpty from "../../assets/heart-empty.svg";
-import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvider";
-import { useContext } from "react";
 import Word from "./Word";
 
-//Displayar ut det sökta ordet på ett användarvänligt sätt
+/*
+Displays the searched word and handle the favorite word by updating favorite status.
+The function updates favorite property of the word thats been clicked, and sets all other words to false. 
+If the word is marked as a favorite it's added to the favorite list.
+
+And FavoriteListContext is imported to this component to acceess the addFovorite function
+for adding words to the favorite list
+ */
 export default function DisplaySearchWord({ searchWord, setSearchWord }) {
   const { addFavorite } = useContext(FavoriteListContext);
 
-  //handling favorite word by uppdating the favoriteStar state and "adding" the word to favorites
   function handleFavoriteWord(favoriteWord) {
-    const newSearchWord = searchWord.map((word) => {
-      if (word === favoriteWord) {
-        return { ...word, favorite: !word.favorite };
-      }
-      return { ...word, favorite: false };
-    });
+    const updatedSearchWord = searchWord.map((word) => ({
+      ...word,
+      favorite: word === favoriteWord ? !word.favorite : false,
+    }));
 
-    setSearchWord(newSearchWord);
-    if (!favoriteWord.favorite) {
-      addFavorite(favoriteWord);
-    }
+    setSearchWord(updatedSearchWord);
+    !favoriteWord.favorite && addFavorite(favoriteWord);
   }
 
   return (
@@ -31,7 +33,7 @@ export default function DisplaySearchWord({ searchWord, setSearchWord }) {
           <div className="display__word">
             <div
               className="display__heart-container"
-              onClick={() => handleFavoriteWord(word)} //sending word-object to favoriteWord function
+              onClick={() => handleFavoriteWord(word)}
             >
               {word.favorite ? (
                 <img src={heartFilled} alt="pink heart shape icon" />

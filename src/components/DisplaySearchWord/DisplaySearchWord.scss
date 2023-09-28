@@ -17,8 +17,13 @@
   }
 
   & h1,
+  h4,
   p {
     margin: 0;
+  }
+
+  & ul {
+    margin: 0.3rem 0;
   }
 
   &__phonetics-title {
@@ -51,7 +56,9 @@
     text-align: left;
     padding-left: 0.5rem;
   }
-
+  &__exempel {
+    color: hotpink;
+  }
   &__end-line {
     margin: 2rem 0;
   }
