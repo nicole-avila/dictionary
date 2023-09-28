@@ -74,7 +74,7 @@ export default function FavoriteList() {
                   </div>
                 ))
               ) : (
-                <p>No video available to listen for this word</p>
+                <p>No audio available to listen for this word</p>
               )}
             </div>
             <hr className="favorites__phonetics-line" />
