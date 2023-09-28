@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
 import { it, expect } from "vitest";
-import Header from "../components/Header/Header";
+import { render, screen } from "@testing-library/react";
 import { DarkThemeProvider } from "../components/DarkTheme/DarkThemeContext";
+import Header from "../components/Header/Header";
 
 describe(" Testing FavoriteList component ", () => {
   it("should render whitout crashing", () => {

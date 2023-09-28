@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
+import { server } from "./mocks/server";
 import userEvent from "@testing-library/user-event";
 import SearchBar from "../components/SearchBar/SearchBar";
-import { server } from "./mocks/server";
 import mockWords from "./mocks/mockWords.json";
 
 beforeAll(() => server.listen());
@@ -38,51 +38,16 @@ describe("Testing SearchBar Component", () => {
     expect(input).toHaveValue("lady");
   });
 
-  vi.mock("../../fetch/fetchFreeDictionary", () => ({
-    fetchFreeDictionary: async () => ({ message: "Sorry pal, no word found" }),
-  }));
-  //Lägg in message i din json fil!
-
   it("should display a message when the word dose not exsist", async () => {
-    const { container } = render(<SearchBar mockWords={mockWords} />);
+    render(<SearchBar mockWords={mockWords} />);
     const user = userEvent.setup();
     const input = screen.getByRole("textbox");
 
-    await user.type(input, "{Enter}"); //simulerar ett sökord
+    await user.type(input, "{Enter}");
     expect(screen.findByText("Loading.."));
 
-    const message = container.querySelector(".search");
-
-    expect(message.textContent).toBe("Please enter a word to search");
+    expect(
+      screen.getByText("Please enter a word to search")
+    ).toBeInTheDocument();
   });
 });
-
-////////////////////////////////////////////////
-// it("should call the handleSubmit function when the form is submitted", async () => {
-//     const mockSubmit = vi.fn();
-//     render(<SearchBar handleSubmit={mockSubmit} setSearchWord={vi.fn()} />);
-//     const user = userEvent.setup();
-//     const input = screen.getByRole("textbox");
-
-//     await user.type(input, "lady");
-//     fireEvent.submit(input);
-
-//     //   await waitFor(() => {
-//     //     expect(mockSubmit).toHaveBeenCalled();
-//     //   });
-// });
-
-//////////////////////////////////////////
-// it("SearchBar component should recive two props", () => {
-//   const mockSetSearchWord = vi.fn();
-//   const mockSetFavoriteStar = vi.fn();
-//   render(
-//     <SearchBar
-//       setSearchWord={mockSetSearchWord}
-//       setFavoriteStar={mockSetFavoriteStar}
-//     />
-//   );
-
-//   // expect(mockSetSearchWord).toHaveBeenCalledWith();
-//   // expect(mockSetFavoriteStar).toBe(false);
-// });

@@ -20,7 +20,7 @@ describe(" Testing FavoriteList component ", () => {
     expect(favoriteListTitle).toBeInTheDocument();
   });
 
-  it("should toggel favorite-word information", async () => {
+  it("should toggel information from favorite word in the Favorite List", async () => {
     const { container } = render(
       <FavoriteListProvider>
         <FavoriteList mockWords={mockWords} />
@@ -29,10 +29,13 @@ describe(" Testing FavoriteList component ", () => {
     const user = userEvent.setup();
 
     const favoriteWord = container.querySelector(".favorites__word");
-    user.click(favoriteWord);
+    await user.click(favoriteWord);
 
-    const phoneticsSpelling = screen.getByRole("heading", "PHONETICS SPELLING");
-    expect(phoneticsSpelling).toBeInTheDocument();
+    const phoneticsTitle = screen.getByRole("heading", "PHONETICS SPELLING");
+    expect(phoneticsTitle).toBeInTheDocument();
+
+    const meaningsTitle = screen.getByRole("heading", "MEANINGS");
+    expect(meaningsTitle).toBeInTheDocument();
   });
 
   it("should remove a favorite word", async () => {
@@ -50,13 +53,3 @@ describe(" Testing FavoriteList component ", () => {
     expect(removedWord).not.toBeInTheDocument();
   });
 });
-
-/////////////////////////////////
-
-// it("should render FavoriteList with initinalState", async () => { //rendera ut den ursprunglia datan
-//   const { getByText } = render(
-//     <FavoriteListProvider>
-//       <FavoriteList mockWords={mockWords} />
-//     </FavoriteListProvider>
-//   );
-// });

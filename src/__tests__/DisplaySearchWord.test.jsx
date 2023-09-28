@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { it, expect, describe } from "vitest";
-import { server } from "./mocks/server";
 import { FavoriteListProvider } from "../components/FavoriteListProvider/FavoriteListProvider";
+import { server } from "./mocks/server";
 import DisplaySearchWord from "../components/DisplaySearchWord/DisplaySearchWord";
 import mockWords from "./mocks/mockWords.json";
 import userEvent from "@testing-library/user-event";
@@ -13,11 +13,7 @@ describe("Testing DisplaySearchWord Component", () => {
   it("should render component without crashing..", () => {
     render(
       <FavoriteListProvider>
-        <DisplaySearchWord
-          searchWord={mockWords}
-          setFavoriteStar={mockWords} //behövs dom dom funktionerna vara med ?
-          setSearchBar={mockWords}
-        />
+        <DisplaySearchWord searchWord={mockWords} setSearchBar={mockWords} />
       </FavoriteListProvider>
     );
   });
@@ -25,11 +21,7 @@ describe("Testing DisplaySearchWord Component", () => {
   it("should render a word", async () => {
     render(
       <FavoriteListProvider>
-        <DisplaySearchWord
-          searchWord={mockWords}
-          setFavoriteStar={mockWords} //behövs dom dom funktionerna vara med ?
-          setSearchBar={mockWords}
-        />
+        <DisplaySearchWord searchWord={mockWords} setSearchBar={mockWords} />
       </FavoriteListProvider>
     );
 
@@ -43,7 +35,6 @@ describe("Testing DisplaySearchWord Component", () => {
         <DisplaySearchWord searchWord={mockWords} />
       </FavoriteListProvider>
     );
-    const user = userEvent.setup();
     expect(screen.getByText("lady")).toBeInTheDocument();
     expect(screen.getByRole("img", "heart shape icon")).toBeInTheDocument();
     expect(screen.getAllByText("/ˈleɪdi/")).toHaveLength(2);
@@ -54,7 +45,7 @@ describe("Testing DisplaySearchWord Component", () => {
     expect(screen.getAllByRole("listitem")).toHaveLength(18);
   });
 
-  it("should toggle favorite icon from empty heart to filled on click", async () => {
+  it("should toggle favorite icon from empty heart to filled by click", async () => {
     render(
       <FavoriteListProvider>
         <DisplaySearchWord searchWord={mockWords} setSearchWord={vi.fn()} />
