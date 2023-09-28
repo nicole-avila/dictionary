@@ -1,9 +1,10 @@
-#Dictionary
+# Dictionary
 
 Implementera en ordbok där användare kan slå upp ord med hjälp av
 Free Dictionary API.
 
-###Features
+### Features
+
 _ Användaren kan söka efter ord i ett sökfält
 _ Användaren kan se svaret från Free Dictionary API i en användarvänlig form.
 All information som finns med i exempelsvaret på förstasidan hos Free
@@ -15,10 +16,11 @@ tillgängliga i en lista för användaren att se. Från listan ska man kunna se 
 sparade svaret från API. Man ska även kunna ta bort sina favoritord.
 _ Byta mellan dark och light theme.
 
-###Testning
+### Testning - RTL, Jest & MSW
+
 _ Appen innehåller enhetstester och integrationstester som säkerställer
 att koden huvudsakligen fungerar som den ska.
 _ Appen innehåller väl valda enhetstester och integrationstester som
 säkerställer att koden i hög utsträckning fungerar som den ska. \* Resonerar väl kring val av tester och testningsmetodik.
 
-#####React + Vite
+##### React + Vite
