@@ -1,6 +1,13 @@
 import "./FavoriteList.scss";
 import { FavoriteListContext } from "../FavoriteListProvider/FavoriteListProvider";
 import { useContext, useState } from "react";
+import FavoriteWord from "./FavoriteWord";
+
+/*
+FavoriteList Component shows a list of favorite words that the user has marked as favorites. 
+It uses the FavoriteListContext to handle and display these favorites. 
+Each word in the list allows the user to view the details from the favorite word and remove it from the favorites list.
+*/
 
 export default function FavoriteList() {
   const [selectedWord, setSelectedWord] = useState("");
@@ -48,38 +55,31 @@ export default function FavoriteList() {
           >
             <h3>PHONETICS SPELLING</h3>
             <div className="favorites__phonetics-container">
-              {favorite.phonetics.map((phonetic, index) => (
-                <div key={index}>
-                  <p className="favorites__phonetic-p">{phonetic.text}</p>
-
-                  <audio controls style={{ width: "150px" }}>
-                    <source src={phonetic.audio} type="audio/mpeg" />
-                  </audio>
-                </div>
-              ))}
+              {favorite.phonetics.length > 0 ? (
+                favorite.phonetics.map((phonetic, index) => (
+                  <div key={index}>
+                    {phonetic.audio !== "" && (
+                      <div>
+                        <p className="favorites__phonetic-p">{phonetic.text}</p>
+                        <audio
+                          controls
+                          className="display__phonetic-audio"
+                          data-testid="audio"
+                          src={phonetic.audio}
+                          type="audio/mpeg"
+                          style={{ width: "150px" }}
+                        ></audio>
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No video available to listen for this word</p>
+              )}
             </div>
             <hr className="favorites__phonetics-line" />
             <h3>MEANINGS</h3>
-            {favorite.meanings.map((meaning, index) => (
-              <div key={index}>
-                <p>{meaning.partOfSpeech}</p>
-                <ol>
-                  {meaning.definitions.map((def, index) => (
-                    <li key={index}>
-                      {" "}
-                      {def.definition}
-                      {def.example ? (
-                        <p style={{ color: "hotpink" }}>
-                          example: {def.example}
-                        </p>
-                      ) : (
-                        ""
-                      )}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
+            <FavoriteWord favorite={favorite} />
           </div>
           <hr />
         </article>
