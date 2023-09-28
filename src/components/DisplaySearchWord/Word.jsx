@@ -1,5 +1,6 @@
-import { useState } from "react";
 import "./DisplaySearchWord.scss";
+import { useState } from "react";
+import Meanings from "./Meanings";
 
 export default function Word({ word }) {
   const [audioVisible, setAudioVisible] = useState(false);
@@ -15,68 +16,31 @@ export default function Word({ word }) {
       <div
         className={`display__phonetics ${audioVisible ? "visible" : "hidden"}`}
       >
-        {word.phonetics.map((phonetic, index) => (
-          <div className="display__phonetics-container" key={index}>
-            <p className="display__phonetic-p">{phonetic.text}</p>
-            <audio
-              controls
-              className="display__phonetic-audio"
-              data-testid="audio"
-              src={phonetic.audio}
-              type="audio/mpeg"
-            ></audio>
-          </div>
-        ))}
-      </div>
-
-      <hr className="display__line" />
-
-      <div>
-        <h3>EXEMPEL OF MEANINGS</h3>
-        {word.meanings.map((meaning, index) => (
-          <div className="display__meanings-container" key={index}>
-            <p>{meaning.partOfSpeech}</p>
-            <div>
-              <ol>
-                {meaning.definitions.map((def, index) => (
-                  <li key={index}>
-                    {" "}
-                    {def.definition}
-                    {def.example ? (
-                      <p style={{ color: "hotpink" }}>example: {def.example}</p>
-                    ) : (
-                      ""
-                    )}
-                    {def.synonyms && def.synonyms.length > 0 && (
-                      <div>
-                        <strong>Synonyms</strong>
-                        <ul>
-                          {def.synonyms.map((synonym, index) => (
-                            <li key={index} style={{ color: "green" }}>
-                              {synonym}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}{" "}
-                    {def.antonyms && def.antonyms.length > 0 && (
-                      <div>
-                        <strong>Antonyms</strong>
-                        <ul>
-                          {def.antonyms.map((antonym, index) => (
-                            <li key={index} style={{ color: "blue" }}>
-                              {antonym}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ol>
+        {word.phonetics.length > 0 ? (
+          word.phonetics.map((phonetic, index) => (
+            <div className="display__phonetics-container" key={index}>
+              {phonetic.audio !== "" && (
+                <div>
+                  <p className="display__phonetic-p">{phonetic.text}</p>
+                  <audio
+                    controls
+                    className="display__phonetic-audio"
+                    data-testid="audio"
+                    src={phonetic.audio}
+                    type="audio/mpeg"
+                  ></audio>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No video available to listen for this word</p>
+        )}
+      </div>
+      <hr className="display__line" />
+      <h3>EXEMPEL OF MEANINGS</h3>
+      <div>
+        <Meanings word={word} />
       </div>
       <hr className="display__end-line" />
     </div>
