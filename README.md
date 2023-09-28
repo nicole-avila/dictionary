@@ -17,7 +17,7 @@ Free Dictionary API.
 
 ### Testning
 
-##### RTL, Jest & MSW
+    - RTL, Jest & MSW
 
 - Appen innehåller enhetstester och integrationstester som säkerställer
   att koden huvudsakligen fungerar som den ska.
